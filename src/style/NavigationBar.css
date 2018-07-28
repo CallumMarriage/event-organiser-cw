@@ -1,0 +1,14 @@
+.NavigationBar {
+    height: 60;
+    width: 100%;
+    height: 100px;
+    background-color: #4484ce;
+    border: 0.5px solid black;
+}
+
+h1#title {
+    align-content: center;
+    color: white;
+    position: fixed;
+    left: 15%;
+}

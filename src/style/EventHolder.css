@@ -1,0 +1,8 @@
+.EventHolder {
+    margin-top: 40px;
+    width: 500px;
+    height:800px;
+    position: fixed;
+    left: 35%;
+    border: 1px solid #F19F4D;
+}

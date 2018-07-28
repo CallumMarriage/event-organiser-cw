@@ -1,0 +1,18 @@
+.Login {
+    width: fit-content;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+label {
+    padding: 16px;
+    color: white;
+
+}
+
+#submit {
+    height: 100px;
+    width: 50px;
+    margin-left: 10px;
+}
