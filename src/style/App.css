@@ -1,3 +1,12 @@
+.EventHolder {
+  float: left;
+}
+
+.Registration {
+  float: right;
+}
+
 .App {
-  text-align: center;
+  height: 1500px;
+  width: 100%;
 }

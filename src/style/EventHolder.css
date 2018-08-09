@@ -1,8 +1,27 @@
 .EventHolder {
-    margin-top: 40px;
-    width: 500px;
-    height:800px;
-    position: fixed;
-    left: 35%;
-    border: 1px solid #F19F4D;
+    width: 1270px;
+    height: 100%;;
+    border: 1px solid darkgrey;
+    border-top: 0px;
+    border-bottom: 0px;
+    margin-left: 2%;
+    padding: 50px 50px 50px 50px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+}
+
+#container {
+    width: 99%;
+    height: fit-content;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid darkgrey;
+    background-color: white;
+
+}
+
+#eventHolderTitle {
+    margin-top: -20px;
+    font-size: 50px;
+    color: black;
 }

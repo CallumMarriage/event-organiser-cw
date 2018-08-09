@@ -16,3 +16,23 @@ label {
     width: 50px;
     margin-left: 10px;
 }
+
+#username, #password {
+    color: black;
+    margin-left: 5px;
+}
+
+input#login-username, input#login-password{
+    width: 20%;
+    padding: 5px;
+    margin: 5px 5px 22px 5px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
+    background-color: #ddd;
+    outline: none;
+}
