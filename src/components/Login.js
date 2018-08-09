@@ -30,7 +30,7 @@ class Login extends Component {
     
     event.preventDefault();
 
-    fetch('http://intense-everglades-54619.herokuapp.com/validateLogin/'+this.state.username +"/" + this.state.password, {
+    fetch('https://intense-everglades-54619.herokuapp.com/validateLogin/'+this.state.username +"/" + this.state.password, {
         method: 'get'
     })
     .then(res => res.json())

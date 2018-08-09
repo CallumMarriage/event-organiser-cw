@@ -20,7 +20,7 @@ class EventHolder extends React.Component {
   }
 
   getEvents(){
-    fetch("http://intense-everglades-54619.herokuapp.com/events")
+    fetch("https://intense-everglades-54619.herokuapp.com/events")
     .then(res => res.json())
     .then((result) => {
       this.setState({
