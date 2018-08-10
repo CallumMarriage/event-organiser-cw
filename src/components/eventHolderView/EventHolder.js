@@ -3,6 +3,7 @@ import Event from './eventView/Event';
 import { Container, Row, Col } from 'react-grid-system';
 
 import "./EventHolder.css"
+import AddEventForm from './addEventView/AddEventForm';
 
 class EventHolder extends React.Component {
 
@@ -59,6 +60,7 @@ class EventHolder extends React.Component {
               </Row>
             </Container>
             </ul>
+            <AddEventForm/>
           </div>
         </div>
       );

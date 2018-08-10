@@ -3,7 +3,6 @@ import NavigationBar from './navigationView/NavigationBar';
 import '../style/App.css';
 import EventHolder from './eventHolderView/EventHolder';
 import Registration from './registrationView/Registration';
-import AddEventForm from './addEventView/AddEventForm';
 
 class App extends Component {
 
@@ -13,7 +12,6 @@ class App extends Component {
         <NavigationBar />
         <EventHolder/>
         <Registration/>
-        <AddEventForm/>
       </div>
     );
   }
