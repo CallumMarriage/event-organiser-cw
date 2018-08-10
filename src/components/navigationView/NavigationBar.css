@@ -7,5 +7,6 @@
 
 h1#title {
     color: white;
-    margin-left: 30%;
+    margin-left: 45%;
+    position: absolute
 }

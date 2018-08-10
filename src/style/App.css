@@ -6,6 +6,10 @@
   float: right;
 }
 
+.AddEventForm {
+  float:right;
+}
+
 .App {
   height: 1500px;
   width: 100%;

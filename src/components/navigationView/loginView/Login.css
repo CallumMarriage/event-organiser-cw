@@ -1,6 +1,7 @@
 .Login {
     width: fit-content;
     float: right;
+    height: 100%;
     margin-top: 10px;
     margin-right: 10px;
 }
@@ -9,6 +10,13 @@ label {
     padding: 16px;
     color: white;
 
+}
+
+#welcomeMessage {
+    position: absolute;
+    color: lightgrey;
+    font-size: 30px;
+    margin-left: 5%;
 }
 
 #submit {
@@ -36,3 +44,19 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
     background-color: #ddd;
     outline: none;
 }
+
+button#logout {
+    width: fit-content;
+    float: right;
+    margin-right: 10px;
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+#registered {
+    width: 100%;
+    height: 100%;
+    height: fit-content;
+    padding: 3px 0 0 3px;
+}
+

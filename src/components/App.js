@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import NavigationBar from './NavigationBar';
+import NavigationBar from './navigationView/NavigationBar';
 import '../style/App.css';
-import EventHolder from './EventHolder';
-import Registration from './Registration';
+import EventHolder from './eventHolderView/EventHolder';
+import Registration from './registrationView/Registration';
+import AddEventForm from './addEventView/AddEventForm';
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-        <NavigationBar/>
+        <NavigationBar />
         <EventHolder/>
         <Registration/>
+        <AddEventForm/>
       </div>
     );
   }

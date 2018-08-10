@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Event from './Event';
+import React from 'react';
+import Event from './eventView/Event';
 import { Container, Row, Col } from 'react-grid-system';
 
-import "../style/EventHolder.css"
+import "./EventHolder.css"
 
 class EventHolder extends React.Component {
 
