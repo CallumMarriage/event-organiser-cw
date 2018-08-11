@@ -70,7 +70,7 @@ class EventFilter extends React.Component {
   render() {
     const { filtered, value, type, loaded } = this.state;
     if(loaded){
-        alert(filtered[0].name);
+        alert(filtered[0].date);
 
         return (
             <div className="EventFilter">
