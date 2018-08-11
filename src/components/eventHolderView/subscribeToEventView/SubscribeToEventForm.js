@@ -40,7 +40,7 @@ class SubscribeToEventForm extends Component {
     event.preventDefault();
 
     fetch('https://pure-shore-75332.herokuapp.com/subscribeToEvent', {
-        method: 'PUT',  
+        method: 'POST',  
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
