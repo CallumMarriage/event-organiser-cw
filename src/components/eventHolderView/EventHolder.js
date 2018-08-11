@@ -2,8 +2,11 @@ import React from 'react';
 import Event from './eventView/Event';
 import { Container, Row, Col } from 'react-grid-system';
 
+import EventFilter from './filterView/FilterView';
 import "./EventHolder.css"
 import AddEventForm from './addEventView/AddEventForm';
+import RemoveEventForm from './removeEventView/RemoveEventForm';
+import UpdateEventForm from './updateEventView/UpdateEventForm';
 
 class EventHolder extends React.Component {
 
@@ -13,7 +16,6 @@ class EventHolder extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
-      itemsFilteredByType: [],
       type: ''
     };
 
@@ -29,7 +31,7 @@ class EventHolder extends React.Component {
   }
 
   getEvents(){
-    var url ="https://intense-everglades-54619.herokuapp.com/events";
+    var url ="https://pure-shore-75332.herokuapp.com/events";
     fetch(url)
     .then(res => res.json())
     .then((result) => {
@@ -47,7 +49,7 @@ class EventHolder extends React.Component {
   }
   
   render() {
-    const { error, isLoaded, items, itemsFilteredByType } = this.state;
+    const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -73,8 +75,10 @@ class EventHolder extends React.Component {
             </ul>
             </div>
           </div>
-          
+          <EventFilter/>
           <AddEventForm/>
+          <RemoveEventForm/>
+          <UpdateEventForm/>
           
           </div>
       );

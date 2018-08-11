@@ -47,7 +47,7 @@ class Registration extends Component {
 
   handleSubmit(event) {
   
-    fetch('https://intense-everglades-54619.herokuapp.com/user', {
+    fetch('https://pure-shore-75332.herokuapp.com/user', {
         method: 'POST',  
         headers: {
           'Accept': 'application/json',

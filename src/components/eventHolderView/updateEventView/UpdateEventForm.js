@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import "./AddEventForm.css"
+import "./UpdateEventForm.css"
 
-class AddEventForm extends Component {
+class UpdateEventForm extends Component {
 
   constructor(props){
     super(props);
@@ -51,7 +51,7 @@ class AddEventForm extends Component {
     event.preventDefault();
 
     fetch('https://pure-shore-75332.herokuapp.com/event', {
-        method: 'POST',  
+        method: 'PUT',  
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -82,13 +82,14 @@ class AddEventForm extends Component {
 
 
   render() {
+    
       if(this.state.registered === false){
         return (
-          <div className="AddEventForm">
-            <h1 id="title-reg">Add Event</h1>
+          <div className="UpdateEventForm">
+            <h1 id="title-reg">Update Event</h1>
             <form onSubmit={this.handleSubmit}>
             
-            <label htmlFor="name">Enter the event name</label>
+            <label htmlFor="name">Enter the name of the evnt to update</label>
             
             <input id="name" name="name" type="text" onChange={this.handleNameChange}/>
 
@@ -96,11 +97,11 @@ class AddEventForm extends Component {
 
             <input id="description" name="description" type="text"  onChange={this.handleDescriptionChange}/>
 
-            <label htmlFor="type">Enter event type</label>
+            <label htmlFor="type">Enter the new event type</label>
 
             <input id="type" name="type" type="text" onChange={this.handleTypeChange}/>
 
-            <label htmlFor="date">Enter the date of the Event</label>
+            <label htmlFor="date">Enter the new date of the Event</label>
 
             <input id="date" name="date" type="date" onChange={this.handleDateChange}/>
 
@@ -108,7 +109,7 @@ class AddEventForm extends Component {
 
             <input id="username" name="username" type="text" onChange={this.handleUsernameChange}/>
 
-            <button>Create Event</button>
+            <button>Update Event</button>
           </form>
           </div>
         );
@@ -123,4 +124,4 @@ class AddEventForm extends Component {
   }
 }
 
-export default AddEventForm;
+export default UpdateEventForm;

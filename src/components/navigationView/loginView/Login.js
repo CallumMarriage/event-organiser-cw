@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import "./Login.css";
-import { Redirect } from 'react-router-dom';
-
 
 class Login extends Component {
 
@@ -38,7 +36,7 @@ class Login extends Component {
     
     event.preventDefault();
 
-    fetch('https://intense-everglades-54619.herokuapp.com/validateLogin/'+this.state.username +"/" + this.state.password, {
+    fetch('https://pure-shore-75332.herokuapp.com/validateLogin/'+this.state.username +"/" + this.state.password, {
         method: 'get'
     })
     .then(res => res.json())
@@ -48,6 +46,7 @@ class Login extends Component {
         this.setState({
           loggedIn: true
         })
+        window.open('newPageUrl', "_blank");
 
       } else {
         alert("Username and password do not match");
@@ -61,9 +60,30 @@ class Login extends Component {
   }
 
   render() {
-    const {isAuthenticated} = this.props.loggedIn;
-    if (isAuthenticated) {
-      return <Redirect to='/url' />;
+  
+    if(!this.state.loggedIn){
+      return (
+        <div className="Login">
+          <form onSubmit={this.handleSubmit}>
+            <label id="username">
+                Username
+            </label>
+            <input id="login-username" type="text" onChange={this.handleUsernameChange}/>
+            <label id="password">
+                Password
+            </label>
+            <input id="login-password" type="password" onChange={this.handlePasswordChange}/>
+            <input id="submit" type="submit" value="Login"/>
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div id="registered">
+          <h1 id="welcomeMessage">Welcome {this.state.username}.</h1>
+          <button id="logout" onClick={this.handleLogout}>Logout</button>
+        </div>
+      )
     }
   }
 }
