@@ -4,9 +4,6 @@ import '../style/App.css';
 import EventHolder from './eventHolderView/EventHolder';
 import Registration from './registrationView/Registration';
 
-import { connect } from 'react-redux';
-
-
 class App extends Component {
 
   render() {

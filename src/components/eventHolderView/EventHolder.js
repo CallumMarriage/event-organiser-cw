@@ -13,24 +13,24 @@ class EventHolder extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
-      username: '',
+      itemsFilteredByType: [],
+      type: ''
     };
 
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
   }
 
-  handleUsernameChange(event) {
-    this.setState({username: event.target.value});
+  handleTypeChange(event) {
+    this.setState({type: event.target.value});
   }
 
   componentDidMount(){
-    this.getEvents;
+      this.getEvents();
   }
 
   getEvents(){
     var url ="https://intense-everglades-54619.herokuapp.com/events";
-        fetch(url)
+    fetch(url)
     .then(res => res.json())
     .then((result) => {
       this.setState({
@@ -45,15 +45,9 @@ class EventHolder extends React.Component {
       });
     });
   }
-
-  handleSubmit(){
-    this.setState({userMode: true, items: []})
-    this.getEvents;
-  }
-
+  
   render() {
-
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items, itemsFilteredByType } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -65,12 +59,7 @@ class EventHolder extends React.Component {
           <h1 id="eventHolderTitle"> Events </h1>
           
           <div id="container">
-          
-            <form onSubmit={this.handleSubmit}>          
-              <label htmlFor="username">Enter username</label>
-              <input id="eventFinderSubmit" name="username" type="text" onChange={this.handleUsernameChange}/>
-              <button>Get my events</button>
-            </form>
+            <div id="allContainer">
             <ul>
             <Container>
               <Row>
@@ -82,9 +71,12 @@ class EventHolder extends React.Component {
               </Row>
             </Container>
             </ul>
-            <AddEventForm/>
+            </div>
           </div>
-        </div>
+          
+          <AddEventForm/>
+          
+          </div>
       );
     }
   }
