@@ -48,7 +48,6 @@ class EventFilter extends React.Component {
     })
     .then(res => res.json())
     .then((result) => {
-        console.log(result);
         if(result.error !== null){
             console.log(result);
         this.setState({

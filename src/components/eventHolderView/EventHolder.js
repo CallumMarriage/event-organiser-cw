@@ -7,6 +7,7 @@ import "./EventHolder.css"
 import AddEventForm from './addEventView/AddEventForm';
 import RemoveEventForm from './removeEventView/RemoveEventForm';
 import UpdateEventForm from './updateEventView/UpdateEventForm';
+import SubscribeToEventForm from './subscribeToEventView/SubscribeToEventForm';
 
 class EventHolder extends React.Component {
 
@@ -79,7 +80,7 @@ class EventHolder extends React.Component {
           <AddEventForm/>
           <RemoveEventForm/>
           <UpdateEventForm/>
-          
+          <SubscribeToEventForm/>
           </div>
       );
     }
