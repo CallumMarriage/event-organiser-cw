@@ -54,6 +54,7 @@ class EventFilter extends React.Component {
             loaded: true,
             filtered: result
         });
+        alert(result);
         }else {
             this.setState({
                 loaded: false,
