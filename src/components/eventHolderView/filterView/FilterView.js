@@ -70,7 +70,7 @@ class EventFilter extends React.Component {
   render() {
     const { filtered, value, type, loaded } = this.state;
     if(loaded){
-        alert(filtered[0].date);
+        alert(filtered.date);
 
         return (
             <div className="EventFilter">
@@ -95,6 +95,7 @@ class EventFilter extends React.Component {
                             <Row>
                                 {filtered.map(filter => (
                                 <Col sm={4}>
+                                <p>{filter}</p>
                                     <Event key={filter.event_id} title={filter.name} description={filter.description} date={filter.date}/>
                                 </Col>
                                 ))}
