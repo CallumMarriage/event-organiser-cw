@@ -45,7 +45,8 @@ class Login extends Component {
         alert("You have logged in!");
         this.setState({
           loggedIn: true
-        }) 
+        })
+
       } else {
         alert("Username and password do not match");
       }
@@ -58,30 +59,9 @@ class Login extends Component {
   }
 
   render() {
-  
-    if(!this.state.loggedIn){
-      return (
-        <div className="Login">
-          <form onSubmit={this.handleSubmit}>
-            <label id="username">
-                Username
-            </label>
-            <input id="login-username" type="text" onChange={this.handleUsernameChange}/>
-            <label id="password">
-                Password
-            </label>
-            <input id="login-password" type="password" onChange={this.handlePasswordChange}/>
-            <input id="submit" type="submit" value="Login"/>
-          </form>
-        </div>
-      );
-    } else {
-      return (
-        <div id="registered">
-          <h1 id="welcomeMessage">Welcome {this.state.username}.</h1>
-          <button id="logout" onClick={this.handleLogout}>Logout</button>
-        </div>
-      )
+    const {isAuthenticated} = this.props.isLoggedIn;
+    if (isAuthenticated) {
+      return <Redirect to='/url' />;
     }
   }
 }
