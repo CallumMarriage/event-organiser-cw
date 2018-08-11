@@ -1,6 +1,7 @@
 import React from 'react';
 import Event from './eventView/Event';
 import { Container, Row, Col } from 'react-grid-system';
+import { fetchEvents } from '../../actions/eventsActions';
 
 import "./EventHolder.css"
 import AddEventForm from './addEventView/AddEventForm';
@@ -12,16 +13,26 @@ class EventHolder extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
+      username: '',
+      userMode: false
     };
+
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){
-   this.getEvents();
+  handleUsernameChange(event) {
+    this.setState({username: event.target.value});
   }
 
   getEvents(){
-    fetch("https://intense-everglades-54619.herokuapp.com/events")
+    var url ="https://intense-everglades-54619.herokuapp.com/events";
+    if(this.state.userMode){
+      url += "?username="+ this.state.username;
+    }
+    
+    fetch(url)
     .then(res => res.json())
     .then((result) => {
       this.setState({
@@ -37,7 +48,13 @@ class EventHolder extends React.Component {
     });
   }
 
+  handleSubmit(){
+    this.setState({userMode: true, items: []})
+    this.getEvents;
+  }
+
   render() {
+
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -46,9 +63,16 @@ class EventHolder extends React.Component {
     } else {
       return (
         <div className="EventHolder">
+        
           <h1 id="eventHolderTitle"> Events </h1>
           
           <div id="container">
+          
+            <form onSubmit={this.handleSubmit}>          
+              <label htmlFor="username">Enter username</label>
+              <input id="eventFinderSubmit" name="username" type="text" onChange={this.handleUsernameChange}/>
+              <button>Get my events</button>
+            </form>
             <ul>
             <Container>
               <Row>

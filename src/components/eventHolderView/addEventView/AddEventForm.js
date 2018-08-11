@@ -10,6 +10,7 @@ class AddEventForm extends Component {
       description: '',
       type: '',
       date: '',
+      username: '',
       error: null,
       isLoaded: false,
       registered: false,
@@ -21,6 +22,8 @@ class AddEventForm extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+  
   }
 
   handleNameChange(event) {
@@ -39,6 +42,9 @@ class AddEventForm extends Component {
     this.setState({date: event.target.value});
   }
 
+  handleUsernameChange(event) {
+    this.setState({username: event.target.value});
+  }
 
   handleSubmit(event) {
     
@@ -54,7 +60,8 @@ class AddEventForm extends Component {
             name: this.state.name,
             description: this.state.description,
             type: this.state.type,
-            date: this.state.date
+            date: this.state.date,
+            owner: this.state.username
         }),
     })
     .then(res => res.json())
@@ -99,6 +106,10 @@ class AddEventForm extends Component {
             <label htmlFor="date">Enter the date of the Event</label>
 
             <input id="date" name="date" type="date" onChange={this.handleDateChange}/>
+
+            <label htmlFor="username">Enter your username</label>
+
+            <input id="username" name="username" type="text" onChange={this.handleUsernameChange}/>
 
             <button>Create Event</button>
           </form>
