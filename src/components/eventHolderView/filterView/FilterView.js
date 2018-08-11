@@ -76,7 +76,7 @@ class EventFilter extends React.Component {
               <div className="EventFilterForm">
               <h1 id="eventFilterTitle"> Filter events</h1>
                 <form onSubmit={this.handleSubmit}>
-                <label htmlFor="filterType">Enter the filter type (owner, type, name)</label>
+                <label htmlFor="filterType">Enter the filter type (owner, type, name, date)</label>
     
                 <input id="filterType" name="filterType" type="text"  onChange={this.handleTypeChange}/>
     
@@ -112,7 +112,7 @@ class EventFilter extends React.Component {
               <div className="EventFilterForm">
               <h1 id="eventFilterTitle"> Filter events</h1>
                 <form onSubmit={this.handleSubmit}>
-                <label htmlFor="filterType">Enter the filter type (owner, type, name)</label>
+                <label htmlFor="filterType">Enter the filter type (owner, type, name, date)</label>
     
                 <input id="filterType" name="filterType" type="text"  onChange={this.handleTypeChange}/>
     
