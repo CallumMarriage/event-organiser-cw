@@ -50,6 +50,7 @@ class EventFilter extends React.Component {
     .then((result) => {
         if(result.error !== null){
             console.log(result);
+            alert(result);
         this.setState({
             loaded: true,
             filtered: result
