@@ -14,7 +14,6 @@ class EventHolder extends React.Component {
       isLoaded: false,
       items: [],
       username: '',
-      userMode: false
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -31,11 +30,7 @@ class EventHolder extends React.Component {
 
   getEvents(){
     var url ="https://intense-everglades-54619.herokuapp.com/events";
-    if(this.state.userMode){
-      url += "?username="+ this.state.username;
-    }
-    
-    fetch(url)
+        fetch(url)
     .then(res => res.json())
     .then((result) => {
       this.setState({
