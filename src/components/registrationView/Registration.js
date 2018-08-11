@@ -46,9 +46,7 @@ class Registration extends Component {
 
 
   handleSubmit(event) {
-    
-    event.preventDefault();
-
+  
     fetch('https://intense-everglades-54619.herokuapp.com/user', {
         method: 'POST',  
         headers: {

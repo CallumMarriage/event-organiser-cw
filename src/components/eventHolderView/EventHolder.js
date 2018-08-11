@@ -1,7 +1,6 @@
 import React from 'react';
 import Event from './eventView/Event';
 import { Container, Row, Col } from 'react-grid-system';
-import { fetchEvents } from '../../actions/eventsActions';
 
 import "./EventHolder.css"
 import AddEventForm from './addEventView/AddEventForm';
@@ -24,6 +23,10 @@ class EventHolder extends React.Component {
 
   handleUsernameChange(event) {
     this.setState({username: event.target.value});
+  }
+
+  componentDidMount(){
+    this.getEvents;
   }
 
   getEvents(){
