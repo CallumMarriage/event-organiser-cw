@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./UpdateEventForm.css"
+import "./SubscribeToEventForm.css"
 
 class SubscribeToEventForm extends Component {
 
