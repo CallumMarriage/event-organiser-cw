@@ -50,11 +50,10 @@ class EventFilter extends React.Component {
     .then((result) => {
         if(result.error !== null){
             console.log(result);
-            alert(result);
-        this.setState({
-            loaded: true,
-            filtered: result
-        });
+            this.setState({
+                loaded: true,
+                filtered: result
+            });
         }else {
             this.setState({
                 loaded: false,
@@ -70,6 +69,7 @@ class EventFilter extends React.Component {
   
   render() {
     const { filtered, value, type, loaded } = this.state;
+    alert(filtered);
     if(loaded){
         return (
             <div className="EventFilter">
