@@ -3,6 +3,7 @@ import Event from '../eventView/Event';
 import { Container, Row, Col } from 'react-grid-system';
 
 import "./FilterView.css"
+import { getCredentials, getUsername } from '../../../utility';
 
 class EventFilter extends React.Component {
 
@@ -40,7 +41,19 @@ class EventFilter extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     var type = this.state.type;
-    var value = this.state.value;
+    var value;
+    alert(getUsername());
+    if(type === 'subscription'){
+        value = getUsername();
+    } else {
+         value = this.state.value;
+    }
+    alert(value)
+    if(getCredentials() == 'Public'){
+        filtered: [];
+        alert('You dont have credientials to filter');
+        return;
+    }
     var url ="https://pure-shore-75332.herokuapp.com/events/"+type+"s?"+type+"="+ value;
     console.log(url);
     fetch(url, {
@@ -69,16 +82,16 @@ class EventFilter extends React.Component {
   
   render() {
     const { filtered, value, type, loaded } = this.state;
+    
     if(loaded){
-        alert(filtered.date);
-
-        return (
+       
+       return (
             <div className="EventFilter">
             
               <div className="EventFilterForm">
               <h1 id="eventFilterTitle"> Filter events</h1>
                 <form onSubmit={this.handleSubmit}>
-                <label htmlFor="filterType">Enter the filter type (owner, type, name, date)</label>
+                <label htmlFor="filterType">Enter the filter type (owner, type, name, date, subscription)</label>
     
                 <input id="filterType" name="filterType" type="text"  onChange={this.handleTypeChange}/>
     
@@ -95,7 +108,6 @@ class EventFilter extends React.Component {
                             <Row>
                                 {filtered.map(filter => (
                                 <Col sm={4}>
-                                <p>{filter}</p>
                                     <Event key={filter.event_id} title={filter.name} description={filter.description} date={filter.date}/>
                                 </Col>
                                 ))}

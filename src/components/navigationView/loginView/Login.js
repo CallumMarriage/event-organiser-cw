@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getLoggedIn, setLoggedIn, setCredentials, setUsername} from '../../../utility';
 import "./Login.css";
 
 class Login extends Component {
@@ -10,7 +11,7 @@ class Login extends Component {
       password: '',
       error: null,
       isLoaded: false,
-      loggedIn: false
+      loggedIn: getLoggedIn()
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -19,6 +20,13 @@ class Login extends Component {
     this.handleLogout = this.handleLogout.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  
+  componentDidMount(){
+    this.setState({
+      loggedIn: getLoggedIn()
+    })
+}
 
   handleUsernameChange(event) {
     this.setState({username: event.target.value});
@@ -43,11 +51,12 @@ class Login extends Component {
     .then((result) => {
       if(result.message === true){
         alert("You have logged in!");
+        setLoggedIn();
+        setUsername(result.username);
+        setCredentials(result.type);
         this.setState({
-          loggedIn: true
+          loggedIn: getLoggedIn()
         })
-        window.open('newPageUrl', "_blank");
-
       } else {
         alert("Username and password do not match");
       }
@@ -60,7 +69,6 @@ class Login extends Component {
   }
 
   render() {
-  
     if(!this.state.loggedIn){
       return (
         <div className="Login">

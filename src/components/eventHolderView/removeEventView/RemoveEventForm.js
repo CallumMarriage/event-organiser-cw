@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import "./RemoveEventForm.css"
+import { getUsername, getCredentials } from '../../../utility';
 
 class RemoveEventForm extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      name: '',
-      username: '',
-      items: []
+      name: ''
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
   
   }
 
@@ -28,6 +26,11 @@ class RemoveEventForm extends Component {
     
     event.preventDefault();
 
+    if(getCredentials() == 'Public' || getCredentials() =='Student'){
+      alert('You dont have credientials to delete events');
+      return;
+    }
+
     var name = this.state.name;
     var url = "https://pure-shore-75332.herokuapp.com/event?name="+name;
     fetch(url, {
@@ -38,7 +41,7 @@ class RemoveEventForm extends Component {
         },
         body: JSON.stringify({
             name: this.state.name,
-            owner: this.state.username
+            owner: getUsername        
         }),
     })
     .then(res => res.json())
@@ -68,10 +71,6 @@ class RemoveEventForm extends Component {
             <label htmlFor="name">Enter the event name</label>
             
             <input id="name" name="name" type="text" onChange={this.handleNameChange}/>
-
-            <label htmlFor="username">Enter your username</label>
-
-            <input id="username" name="username" type="text" onChange={this.handleUsernameChange}/>
 
             <button>Delete Event</button>
           </form>

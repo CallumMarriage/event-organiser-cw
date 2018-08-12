@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./Registration.css"
+import { getLoggedIn } from '../../utility';
 
 class Registration extends Component {
 
@@ -13,7 +14,7 @@ class Registration extends Component {
       type: '',
       error: null,
       isLoaded: false,
-      registered: false,
+      registered: getLoggedIn(),
       items: []
     };
 
@@ -45,8 +46,10 @@ class Registration extends Component {
   }
 
 
+
   handleSubmit(event) {
-  
+    event.preventDefault();
+
     fetch('https://pure-shore-75332.herokuapp.com/user', {
         method: 'POST',  
         headers: {

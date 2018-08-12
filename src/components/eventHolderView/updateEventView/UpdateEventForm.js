@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./UpdateEventForm.css"
+import { getUsername, getCredentials } from '../../../utility';
 
 class UpdateEventForm extends Component {
 
@@ -22,7 +23,6 @@ class UpdateEventForm extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
   
   }
 
@@ -42,13 +42,16 @@ class UpdateEventForm extends Component {
     this.setState({date: event.target.value});
   }
 
-  handleUsernameChange(event) {
-    this.setState({username: event.target.value});
-  }
-
   handleSubmit(event) {
     
     event.preventDefault();
+
+    if(getCredentials() == 'Public' || getCredentials() =='Public'){
+      filtered: [];
+      alert('You dont have credientials to update events');
+      return;
+    }
+
 
     fetch('https://pure-shore-75332.herokuapp.com/event', {
         method: 'PUT',  
@@ -61,7 +64,7 @@ class UpdateEventForm extends Component {
             description: this.state.description,
             type: this.state.type,
             date: this.state.date,
-            owner: this.state.username
+            owner: getUsername()
         }),
     })
     .then(res => res.json())
@@ -104,10 +107,6 @@ class UpdateEventForm extends Component {
             <label htmlFor="date">Enter the new date of the Event</label>
 
             <input id="date" name="date" type="date" onChange={this.handleDateChange}/>
-
-            <label htmlFor="username">Enter your username</label>
-
-            <input id="username" name="username" type="text" onChange={this.handleUsernameChange}/>
 
             <button>Update Event</button>
           </form>

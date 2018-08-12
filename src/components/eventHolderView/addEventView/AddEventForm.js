@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./AddEventForm.css"
+import { getUsername } from '../../../utility';
 
 class AddEventForm extends Component {
 
@@ -9,12 +10,7 @@ class AddEventForm extends Component {
       name: '',
       description: '',
       type: '',
-      date: '',
-      username: '',
-      error: null,
-      isLoaded: false,
-      registered: false,
-      items: []
+      date: ''
     };
 
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -22,7 +18,6 @@ class AddEventForm extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
   
   }
 
@@ -42,10 +37,6 @@ class AddEventForm extends Component {
     this.setState({date: event.target.value});
   }
 
-  handleUsernameChange(event) {
-    this.setState({username: event.target.value});
-  }
-
   handleSubmit(event) {
     
     event.preventDefault();
@@ -61,7 +52,7 @@ class AddEventForm extends Component {
             description: this.state.description,
             type: this.state.type,
             date: this.state.date,
-            owner: this.state.username
+            owner: getUsername
         }),
     })
     .then(res => res.json())
@@ -74,15 +65,11 @@ class AddEventForm extends Component {
       }
     },
     (error) => {
-      this.setState({
-        error
-      });
     });
   }
 
 
   render() {
-      if(this.state.registered === false){
         return (
           <div className="AddEventForm">
             <h1 id="title-reg">Add Event</h1>
@@ -104,22 +91,10 @@ class AddEventForm extends Component {
 
             <input id="date" name="date" type="date" onChange={this.handleDateChange}/>
 
-            <label htmlFor="username">Enter your username</label>
-
-            <input id="username" name="username" type="text" onChange={this.handleUsernameChange}/>
-
             <button>Create Event</button>
           </form>
           </div>
         );
-      } else {
-        return (
-          <div className="Registration">
-          <h1 id="title-reg">Registration</h1>
-          <p>You have already Registered, plase Login</p>
-        </div>
-        );
-    }
   }
 }
 
