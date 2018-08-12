@@ -1,0 +1,16 @@
+.Subscriber {
+    text-align: center;
+    color: rgb(158, 183, 204);
+    margin-top: 40px;
+    width: 100%;
+    background-color: rgb(234, 238, 241);
+    padding: 10px 10px 10px 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(158, 183, 204)
+}
+
+h1#name {
+    font-size: 25px;
+    text-decoration: underline;
+}

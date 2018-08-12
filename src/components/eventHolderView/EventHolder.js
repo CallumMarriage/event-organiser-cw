@@ -8,6 +8,7 @@ import AddEventForm from './addEventView/AddEventForm';
 import RemoveEventForm from './removeEventView/RemoveEventForm';
 import UpdateEventForm from './updateEventView/UpdateEventForm';
 import SubscribeToEventForm from './subscribeToEventView/SubscribeToEventForm';
+import GetSubscriberForm from './getSubscribersView/GetSubscribersForm';
 
 class EventHolder extends React.Component {
 
@@ -17,14 +18,20 @@ class EventHolder extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
+      name: '',
       type: ''
     };
 
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
   }
 
   handleTypeChange(event) {
     this.setState({type: event.target.value});
+  }
+
+  handleNameChange(event) {
+    this.setState({name: event.target.value});
   }
 
   componentDidMount(){
@@ -48,9 +55,28 @@ class EventHolder extends React.Component {
       });
     });
   }
+
+  getSubscribers(){
+    var url ="https://pure-shore-75332.herokuapp.com/events/" + this.state.name + "/subscribers";
+    fetch(url, {
+      method: 'GET'
+     })
+    .then(res => res.json())
+    .then((result) => {
+      
+      this.setState({
+        subscribers: result
+      });
+    },
+    (error) => {
+      this.setState({
+        error
+      });
+    });
+  }
   
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items} = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -83,6 +109,8 @@ class EventHolder extends React.Component {
             <RemoveEventForm/>
             <UpdateEventForm/>
             <SubscribeToEventForm/>
+            <GetSubscriberForm/>
+
           </div>
         </div>
       );

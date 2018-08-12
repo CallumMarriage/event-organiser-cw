@@ -26,6 +26,7 @@ class SubscribeToEventForm extends Component {
       alert('You dont have credientials to delete events');
       return;
     }
+    alert(getUsername());
 
     fetch('https://pure-shore-75332.herokuapp.com/subscribeToEvent', {
         method: 'POST',  
@@ -40,7 +41,6 @@ class SubscribeToEventForm extends Component {
     })
     .then(res => res.json())
     .then((result) => {
-      alert(result.message);
       if(result.message === 'user created succesfully'){
         alert("You have added an event!")
       } else {
