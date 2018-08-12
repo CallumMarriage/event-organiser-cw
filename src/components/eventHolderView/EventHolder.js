@@ -77,11 +77,14 @@ class EventHolder extends React.Component {
             </div>
           </div>
           <EventFilter/>
-          <AddEventForm/>
-          <RemoveEventForm/>
-          <UpdateEventForm/>
-          <SubscribeToEventForm/>
+
+          <div id ="functions">
+            <AddEventForm/>
+            <RemoveEventForm/>
+            <UpdateEventForm/>
+            <SubscribeToEventForm/>
           </div>
+        </div>
       );
     }
   }

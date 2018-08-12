@@ -6,8 +6,8 @@ export function getLoggedIn(){
     return loggedIn;
 }
 
-export function setLoggedIn(){
-    loggedIn = true;
+export function setLoggedIn(current){
+    loggedIn = current;
 }
 
 export function getUsername(){

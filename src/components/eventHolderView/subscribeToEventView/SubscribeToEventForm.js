@@ -22,8 +22,7 @@ class SubscribeToEventForm extends Component {
     
     event.preventDefault();
 
-    if(getCredentials() == 'Organiser' || getCredentials() =='Public'){
-      filtered: [];
+    if(getCredentials() === 'Organiser' || getCredentials() ==='Public'){
       alert('You dont have credientials to delete events');
       return;
     }

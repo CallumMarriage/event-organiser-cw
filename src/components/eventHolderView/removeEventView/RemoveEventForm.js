@@ -26,7 +26,7 @@ class RemoveEventForm extends Component {
     
     event.preventDefault();
 
-    if(getCredentials() == 'Public' || getCredentials() =='Student'){
+    if(getCredentials() === 'Public' || getCredentials() ==='Student'){
       alert('You dont have credientials to delete events');
       return;
     }
@@ -41,7 +41,7 @@ class RemoveEventForm extends Component {
         },
         body: JSON.stringify({
             name: this.state.name,
-            owner: getUsername        
+            owner: getUsername()      
         }),
     })
     .then(res => res.json())

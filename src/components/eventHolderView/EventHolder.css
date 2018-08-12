@@ -1,6 +1,6 @@
 .EventHolder {
     width: 1270px;
-    height: 100%;;
+    height: fit-content;;
     border: 1px solid darkgrey;
     border-top: 0px;
     border-bottom: 0px;

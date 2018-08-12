@@ -42,15 +42,29 @@ class EventFilter extends React.Component {
     event.preventDefault();
     var type = this.state.type;
     var value;
-    alert(getUsername());
-    if(type === 'subscription'){
-        value = getUsername();
+
+    if(type === 'owner'){
+        if(getCredentials() === 'Organiser'){
+         value = getUsername();
+        } else {
+            alert('You dont have the credentials to get events owned by you');
+            return
+        }
     } else {
          value = this.state.value;
     }
-    alert(value)
-    if(getCredentials() == 'Public'){
-        filtered: [];
+
+    if(type === 'subscription'){
+        if(getCredentials() === 'Student'){
+         value = getUsername();
+        } else {
+            alert('You dont have the credentials to get subscriptions');
+            return
+        }
+    } else {
+         value = this.state.value;
+    }
+    if(getCredentials() === 'Public'){
         alert('You dont have credientials to filter');
         return;
     }
@@ -62,11 +76,15 @@ class EventFilter extends React.Component {
     .then(res => res.json())
     .then((result) => {
         if(result.error !== null){
-            console.log(result);
-            this.setState({
-                loaded: true,
-                filtered: result
-            });
+            if(result !== undefined){
+                console.log(result);
+                this.setState({
+                    loaded: true,
+                    filtered: result
+                });
+            } else {
+                alert('Invalid filter');
+            }
         }else {
             this.setState({
                 loaded: false,
@@ -74,14 +92,12 @@ class EventFilter extends React.Component {
             })
         }
     },
-    (error) => {
-      loaded:false
-  });  
+    );  
 }
 
   
   render() {
-    const { filtered, value, type, loaded } = this.state;
+    const { filtered, loaded } = this.state;
     
     if(loaded){
        
@@ -127,7 +143,7 @@ class EventFilter extends React.Component {
               <div className="EventFilterForm">
               <h1 id="eventFilterTitle"> Filter events</h1>
                 <form onSubmit={this.handleSubmit}>
-                <label htmlFor="filterType">Enter the filter type (owner, type, name, date)</label>
+                <label htmlFor="filterType">Enter the filter type (owner, type, name, date, subscription)</label>
     
                 <input id="filterType" name="filterType" type="text"  onChange={this.handleTypeChange}/>
     

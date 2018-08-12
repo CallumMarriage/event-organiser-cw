@@ -38,6 +38,9 @@ class Login extends Component {
 
   handleLogout(event){
     this.setState({loggedIn: false})
+    setCredentials('Public');
+    setUsername(null);
+    setLoggedIn(false);
   }
 
   handleSubmit(event) {
@@ -51,7 +54,7 @@ class Login extends Component {
     .then((result) => {
       if(result.message === true){
         alert("You have logged in!");
-        setLoggedIn();
+        setLoggedIn(true);
         setUsername(result.username);
         setCredentials(result.type);
         this.setState({

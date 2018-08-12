@@ -46,12 +46,10 @@ class UpdateEventForm extends Component {
     
     event.preventDefault();
 
-    if(getCredentials() == 'Public' || getCredentials() =='Public'){
-      filtered: [];
+    if(getCredentials() === 'Public' || getCredentials() ==='Student'){
       alert('You dont have credientials to update events');
       return;
     }
-
 
     fetch('https://pure-shore-75332.herokuapp.com/event', {
         method: 'PUT',  

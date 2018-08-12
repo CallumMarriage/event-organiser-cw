@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./AddEventForm.css"
-import { getUsername } from '../../../utility';
+import { getUsername, getCredentials} from '../../../utility';
 
 class AddEventForm extends Component {
 
@@ -41,6 +41,11 @@ class AddEventForm extends Component {
     
     event.preventDefault();
 
+    if(getCredentials() === 'Public' || getCredentials() ==='Student'){
+      alert('You dont have credientials to update events');
+      return;
+    }
+
     fetch('https://pure-shore-75332.herokuapp.com/event', {
         method: 'POST',  
         headers: {
@@ -52,7 +57,7 @@ class AddEventForm extends Component {
             description: this.state.description,
             type: this.state.type,
             date: this.state.date,
-            owner: getUsername
+            owner: getUsername()
         }),
     })
     .then(res => res.json())
