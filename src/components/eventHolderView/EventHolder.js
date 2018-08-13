@@ -94,7 +94,7 @@ class EventHolder extends React.Component {
               <Row>
                 {items.map(item => (
                 <Col sm={4}>
-                <Event key={item.event_id} title={item.name} description={item.description} date={item.date}/>
+                <Event key={item.event_id} title={item.name} description={item.description} date={item.date} type={item.type}/>
                 </Col>
                 ))}
               </Row>

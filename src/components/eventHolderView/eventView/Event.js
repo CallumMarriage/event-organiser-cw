@@ -13,6 +13,8 @@ class Event extends Component {
           <h1 id="eventTitle">{this.props.title}</h1>
           <p id="eventDescription"> {this.props.description} </p>
           <p id="date"> {Moment(date).format('DD-MM-YYYY')} </p>
+          <p id="type"> {this.props.type} </p>
+
       </div>
     );
   }

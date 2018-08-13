@@ -1,98 +1,128 @@
-import React, { Component } from 'react';
-import { getUsername, getCredentials } from '../../../utility';
+import React from 'react';
+import Subscriber from './SubscriberView/Subscriber';
 import { Container, Row, Col } from 'react-grid-system';
-import Subscriber from './SubscriberView/Subscriber'
 
-class GetSubscriberForm extends Component {
+import { getCredentials, getUsername } from '../../../utility';
+
+class GetSubsribersForm extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
+      filtered: [],
       name: '',
-      subscribers: []
+      loaded: false
     };
+
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.getSubscribers = this.getSubscribers.bind(this);
-  
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearFilter = this.clearFilter.bind(this);
   }
 
   handleNameChange(event) {
     this.setState({name: event.target.value});
   }
 
-  handleUsernameChange(event) {
-    this.setState({username: event.target.value});
-  }
-
-  getSubscribers(event) {
-    
-    event.preventDefault();
-
-    if(getCredentials() === 'Public' || getCredentials() ==='Student'){
-      alert('You dont have credientials to get the subscribers for this event');
-      return;
-    }
-
-    var name = this.state.name;
-    var url = "https://pure-shore-75332.herokuapp.com/events/"+name+"/subscriptions";
-    fetch(url, {
-        method: 'GET'
-    })
-    .then(res => res.json())
-    .then((result) => {
-      alert(result.message);
-      if(result !== null || result !== undefined){
-        this.setState({
-          subscribers: result
-        });
-      } else {
-        console.log("You have failed");
-        alert(result.message);
-      }
-    },
-    (error) => {
-      this.setState({
-        error
-      });
+  clearFilter(event){
+    this.setState({
+        filtered: [],
+        loaded: false
     });
   }
 
-  clear(event){
-    this.setState({
-      subscribers: [],
-  });
-  }
+  handleSubmit(event) {
+    event.preventDefault();
+    var name = this.state.name;
 
+    if(getCredentials() !== 'Organiser'){
+        alert('You dont have credientials to filter');
+        return;
+    }
+    var url ="https://pure-shore-75332.herokuapp.com/events/"+name+"/subscriptions";
+    console.log(url);
+    fetch(url, {
+         method: 'GET'
+    })
+    .then(res => res.json())
+    .then((result) => {
+        if(result.error !== null){
+            if(result !== undefined){
+                this.setState({
+                    loaded: true,
+                    filtered: result
+                });
+            } else {
+                alert('Invalid filter');
+            }
+        }else {
+            this.setState({
+                loaded: false,
+                filtered: []
+            })
+        }
+    },
+    );  
+}
 
+  
   render() {
-    const { subscribers } = this.state;
+    const { filtered, loaded } = this.state;
+    
+    if(loaded){
+       
+       return (
+            <div className="GetSubsribersForm">
+            
+              <div className="GetSubForm">
+              <h1 id="getSubscribersTitle"> Get subscribers by event</h1>
+                <form onSubmit={this.handleSubmit}>
+                <label htmlFor="filterName">Enter the name of the event</label>
+    
+                <input id="filterName" name="filterName" type="text"  onChange={this.handleNameChange}/>
+    
+  
+                <button>Get Subscribers</button>
+              </form>
+              </div>
+              <div id="container">
+                <div id="allContainer">
+                    <ul>
+                        <Container id="filtered">
+                            <Row>
+                                {filtered.map(filter => (
+                                <Col sm={4}>
+                                    <Subscriber key={filter.user_id} title={filter.full_name} email={filter.email}/>
+                                </Col>
+                                ))}
+                            </Row>
+                        </Container>
+                    </ul>
+                </div>
 
+                <button onClick={this.clearFilter}>Clear filter</button>
+              </div>
+            </div>
+          );
+    } else {
         return (
-          <div id ="getSubscribers">
-              <form onSubmit={this.getSubscribers}>
+            <div className="GetSubsribersForm">
             
-            <label htmlFor="name">Enter the event name</label>
+              <div className="GetSubForm">
+              <h1 id="getSubscribersTitle"> Get subscribers by event</h1>
+                <form onSubmit={this.handleSubmit}>
+                <label htmlFor="filterName">Enter the name of the event</label>
+    
+                <input id="filterName" name="filterName" type="text"  onChange={this.handleNameChange}/>
+    
+  
+                <button>Get Subscribers</button>
+              </form>
+              </div>
             
-            <input id="name" name="name" type="text" onChange={this.handleNameChange}/>
-
-            <button>Get subscribers</button>
-          </form>
-            <ul>
-              <Container>
-                <Row>
-                  {subscribers.map(subscriber => (
-                  <Col sm={4}>
-                    <Subscriber key={subscriber.user_id} title={subscriber.name}/>
-                  </Col>
-                  ))}
-                </Row>
-              </Container>
-              </ul>
-              <button onClick={this.clear} > Clear </button>
-
-          </div>
-        );
+            </div>
+          );
+    }
   }
 }
 
-export default GetSubscriberForm;
+export default GetSubsribersForm;

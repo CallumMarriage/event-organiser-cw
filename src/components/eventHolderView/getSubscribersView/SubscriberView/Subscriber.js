@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
 
+import "./Subscriber.css"
+
 
 class Subscriber extends Component {
   render() {
@@ -8,7 +10,8 @@ class Subscriber extends Component {
 
     return (
       <div className="Subscriber">  
-          <h1 id="name">{this.props.title}</h1>
+          <h1 id="name">{this.props.title} </h1>
+          <p id="email"> {this.props.email}</p>
       </div>
     );
   }

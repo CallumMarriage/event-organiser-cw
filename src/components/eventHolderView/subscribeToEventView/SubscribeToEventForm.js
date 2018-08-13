@@ -35,16 +35,16 @@ class SubscribeToEventForm extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            name: this.state.name,
+            eventName: this.state.name,
             username: getUsername()      
         }),
     })
     .then(res => res.json())
     .then((result) => {
-      if(result.message === 'user created succesfully'){
-        alert("You have added an event!")
-      } else {
+      if(result.message === 'User has subscribed to event'){
         alert(result.message);
+      } else {
+        alert(result.error);
       }
     },
     (error) => {

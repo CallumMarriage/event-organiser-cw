@@ -77,8 +77,8 @@ class EventFilter extends React.Component {
     .then((result) => {
         if(result.error !== null){
             if(result !== undefined){
-                console.log(result);
                 this.setState({
+
                     loaded: true,
                     filtered: result
                 });
@@ -124,7 +124,7 @@ class EventFilter extends React.Component {
                             <Row>
                                 {filtered.map(filter => (
                                 <Col sm={4}>
-                                    <Event key={filter.event_id} title={filter.name} description={filter.description} date={filter.date}/>
+                                    <Event key={filter.event_id} title={filter.name} description={filter.description} date={filter.date} type={filter.type}/>
                                 </Col>
                                 ))}
                             </Row>
